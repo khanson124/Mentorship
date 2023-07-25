@@ -1,0 +1,33 @@
+﻿@model List<Message>
+
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<div class="container">
+    <h1>Messages</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Message ID</th>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Message</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+                <tr>
+                    <td>@message.MessageId</td>
+                    <td>@message.Sender.first_name @message.Sender.last_name</td>
+                    <td>@message.Receiver.first_name @message.Receiver.last_name</td>
+                    <td>@message.MessageContent</td>
+                    <td>@(message.Timestamp.HasValue ? message.Timestamp.Value.ToString("g") : "")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

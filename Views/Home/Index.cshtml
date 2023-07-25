@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome, @User.Identity.Name</h1>
+</div>
+
+<div class="container mt-4">
+    <!-- Dashboard -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Dashboard</h5>
+                    <p class="card-text">Total Users: 50</p>
+                    <p class="card-text">Total Mentors: 20</p>
+                    <p class="card-text">Total Mentees: 30</p>
+                    <p class="card-text">Active Mentorship Sessions: 10</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Notifications</h5>
+                    <p class="card-text">No new notifications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="mt-4">
+        <h5>Quick Links</h5>
+        <button type="button" class="btn btn-primary" asp-controller="User" asp-action="Create">Add User</button>
+        <button type="button" class="btn btn-primary" asp-controller="Mentor" asp-action="Create">Add Mentor</button>
+        <!-- Add more quick links as needed -->
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="mt-4">
+        <h5>Recent Activity</h5>
+        <ul>
+            <li>User 'admin' logged in.</li>
+            <!-- Add more activity logs as needed -->
+        </ul>
+    </div>
+</div>

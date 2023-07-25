@@ -1,0 +1,45 @@
+﻿@model List<User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="container">
+    <h1>Users</h1>
+
+    <div class="row">
+        @foreach (var user in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@user.ProfilePicture" class="card-img-top" alt="Profile Picture">
+                    <div class="card-body">
+                        <h5 class="card-title">@user.first_name @user.last_name</h5>
+                        <p class="card-text">Username: @user.Username</p>
+                        <p class="card-text">Email: @user.Email</p>
+                        <p class="card-text">Registration Date: @user.RegistrationDate?.ToShortDateString()</p>
+
+                        <!-- Edit Button -->
+                        <a href="@Url.Action("Edit", "User", new { id = user.UserId })" class="btn btn-primary">Edit</a>
+
+                        <!-- Delete Button -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-@user.UserId">
+                            Delete
+                        </button>
+
+                        <!-- Delete Confirmation Modal -->
+                        <div class="modal fade" id="deleteModal-@user.UserId" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <!-- Modal content goes here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div style="position: fixed; right: 25px; bottom: 60px; z-index: 1000" class="text-white">
+    <a asp-controller="User" asp-action="CreateUser" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add New
+    </a>
+</div>
+

@@ -1,0 +1,66 @@
+﻿@model List<MentorshipSession>
+
+@{
+    ViewData["Title"] = "Mentorship Sessions";
+}
+
+<div class="container">
+    <h1>Mentorship Sessions</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>Mentor ID</th>
+                <th>Mentee ID</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Session Notes</th>
+                <th>Session Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var session in Model)
+            {
+                <tr>
+                    <td>@session.SessionId</td>
+                    <td>@session.Mentor.User.first_name @session.Mentor.User.last_name</td>
+                    <td>@session.Mentee.User.first_name @session.Mentee.User.last_name</td>
+                    <td>@(session.StartTime.HasValue ? session.StartTime.Value.ToString("g") : "")</td>
+                    <td>@(session.EndTime.HasValue ? session.StartTime.Value.ToString("g") : "")</td>
+                    <td>@session.SessionNotes</td>
+                    <td>@session.SessionRating</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "MentorshipSession", new { id = session.SessionId })" class="btn btn-primary">Edit</a>
+
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-@session.SessionId">
+                            Delete
+                        </button>
+
+                        <!-- Delete Confirmation Modal -->
+                        <div class="modal fade" id="deleteModal-@session.SessionId" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete session with ID @session.SessionId?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <a href="@Url.Action("Delete", "MentorshipSession", new { id = session.SessionId })" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

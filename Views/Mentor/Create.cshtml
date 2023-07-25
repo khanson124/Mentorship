@@ -1,0 +1,32 @@
+﻿@model Mentor
+
+@{
+    ViewData["Title"] = "Add a new Mentor";
+}
+
+<form asp-controller="Mentor" asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Bio">Bio</label>
+        <textarea class="form-control" id="Bio" name="Bio" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="AreaOfExpertise">Area of Expertise</label>
+        <input type="text" class="form-control" id="AreaOfExpertise" name="AreaOfExpertise" required>
+    </div>
+
+    <div class="form-group">
+        <label for="HourlyRate">Hourly Rate</label>
+        <input type="number" step="0.01" class="form-control" id="HourlyRate" name="HourlyRate" required>
+    </div>
+
+    <div class="form-group">
+        <label for="Availability">Availability</label>
+        <input type="text" class="form-control" id="Availability" name="Availability" required>
+    </div>
+
+    <input type="hidden" name="UserId" value="@@Model.UserId">
+    
+    <button type="submit" class="btn btn-primary">Create Mentor</button>
+</form>
+

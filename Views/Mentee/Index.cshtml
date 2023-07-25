@@ -1,0 +1,56 @@
+﻿@model List<Mentee>
+
+@{
+    ViewData["Title"] = "Mentees";
+}
+
+<div class="container">
+    <h1>Mentees</h1>
+
+    <div class="row">
+        @foreach (var mentee in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="" class="card-img-top" alt="Profile Picture">
+                    <div class="card-body">
+                        <h5 class="card-title">@mentee.User.first_name @mentee.User.last_name</h5>
+                        <p class="card-text">@mentee.Bio</p>
+                        <p class="card-text"><strong>Interests:</strong> @mentee.Interests</p>
+                        <p class="card-text"><strong>Preferred Mentor Gender:</strong> @mentee.PreferredMentorGender</p>
+                        <p class="card-text"><strong>Preferred Mentor Age Range:</strong> @mentee.PreferredMentorAgeRange</p>
+
+                        <!-- Edit Button -->
+                        <a href="@Url.Action("Edit", "Mentee", new { id = mentee.MenteeId })" class="btn btn-primary">Edit</a>
+
+                        <!-- Delete Button -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-@mentee.MenteeId">
+                            Delete
+                        </button>
+
+                        <!-- Delete Confirmation Modal -->
+                        <div class="modal fade" id="deleteModal-@mentee.MenteeId" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete @mentee.User.first_name @mentee.User.last_name?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <a href="@Url.Action("Delete", "Mentee", new { id = mentee.MenteeId })" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

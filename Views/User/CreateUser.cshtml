@@ -1,0 +1,83 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Add a new User";
+}
+
+<form asp-controller="User" asp-action="CreateUser" method="post" enctype="multipart/form-data">
+    <div class="form-group text-center">
+        <img id="ProfilePicturePreview" />
+
+    </div>
+
+
+    <div class="form-group">
+        <label for="ProfilePicture">Profile Picture</label>
+        <input type="file" class="form-control" id="ProfilePicture" name="ProfilePicture">
+    </div>
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" class="form-control" id="Username" name="Username" required>
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" id="Password" name="Password" required>
+    </div>
+
+    <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" id="FirstName" name="first_name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" id="LastName" name="last_name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" required>
+    </div>
+
+    
+
+    <input type="hidden" name="RegistrationDate" value="@DateTime.Now">
+
+    <button type="submit" class="btn btn-primary">Create User</button>
+</form>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function(){
+            var file = this.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                $('#ProfilePicturePreview').attr('src', reader.result);
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                $('#ProfilePicturePreview').attr('src', '');
+            }
+        })
+
+        $("#ProfilePicture").on("change", function () {
+            var file = this.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                $('#ProfilePicturePreview').attr('src', reader.result);
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                $('#ProfilePicturePreview').attr('src', '');
+            }
+        })
+    </script>
+}
