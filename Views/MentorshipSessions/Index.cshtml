@@ -1,14 +1,16 @@
-﻿@model List<MentorshipSession>
+﻿@model IEnumerable<Mentorship.Models.MentorshipSession>
 
 @{
     ViewData["Title"] = "Mentorship Sessions";
 }
 
-<div class="container">
-    <h1>Mentorship Sessions</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="container mt-4">
+    <h1 class="mb-4">@ViewData["Title"]</h1>
 
     <table class="table table-striped">
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th>Session ID</th>
                 <th>Mentor ID</th>
@@ -25,38 +27,23 @@
             {
                 <tr>
                     <td>@session.SessionId</td>
-                    <td>@session.Mentor.User.first_name @session.Mentor.User.last_name</td>
-                    <td>@session.Mentee.User.first_name @session.Mentee.User.last_name</td>
-                    <td>@(session.StartTime.HasValue ? session.StartTime.Value.ToString("g") : "")</td>
-                    <td>@(session.EndTime.HasValue ? session.StartTime.Value.ToString("g") : "")</td>
+                    <td>@session.MentorId</td>
+                    <td>@session.MenteeId</td>
+                    <td>@session.StartTime.ToString()</td>
+                    <td>@session.EndTime.ToString()</td>
                     <td>@session.SessionNotes</td>
                     <td>@session.SessionRating</td>
                     <td>
-                        <a href="@Url.Action("Edit", "MentorshipSession", new { id = session.SessionId })" class="btn btn-primary">Edit</a>
-
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-@session.SessionId">
-                            Delete
-                        </button>
-
-                        <!-- Delete Confirmation Modal -->
-                        <div class="modal fade" id="deleteModal-@session.SessionId" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete session with ID @session.SessionId?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <a href="@Url.Action("Delete", "MentorshipSession", new { id = session.SessionId })" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="d-flex justify-content-around">
+                            <a href="@Url.Action("Details", "MentorshipSession", new { id = session.SessionId })" class="btn btn-secondary btn-sm">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="@Url.Action("Edit", "MentorshipSession", new { id = session.SessionId })" class="btn btn-primary btn-sm">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "MentorshipSession", new { id = session.SessionId })" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>

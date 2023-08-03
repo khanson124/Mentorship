@@ -1,4 +1,4 @@
-namespace Mentorship.Models
+﻿namespace Mentorship.Models
 {
     public class ErrorViewModel
     {

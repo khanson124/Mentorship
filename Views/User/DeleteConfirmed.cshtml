@@ -1,0 +1,13 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Delete Success";
+}
+
+<div class="container">
+    <h1>User successfully deleted</h1>
+
+    <p>The user was successfully deleted from the system.</p>
+
+    <a href="@Url.Action("Index", "User")" class="btn btn-primary">Back to Users</a>
+</div>

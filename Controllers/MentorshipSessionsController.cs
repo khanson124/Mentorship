@@ -6,9 +6,9 @@ namespace Mentorship.Controllers
 {
     public class MentorshipSessionsController : Controller
     {
-        private readonly MentorShipDbContext _db;
+        private readonly MentorshipDbContext _db;
 
-        public MentorshipSessionsController(MentorShipDbContext context)
+        public MentorshipSessionsController(MentorshipDbContext context)
         {
             _db = context;
         }

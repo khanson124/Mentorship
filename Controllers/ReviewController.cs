@@ -6,9 +6,9 @@ namespace Mentorship.Controllers
 {
     public class ReviewController : Controller
     {
-        private readonly MentorShipDbContext _db;
+        private readonly MentorshipDbContext _db;
 
-        public ReviewController(MentorShipDbContext context)
+        public ReviewController(MentorshipDbContext context)
         {
             _db = context;
         }

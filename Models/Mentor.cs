@@ -17,6 +17,8 @@ public partial class Mentor
 
     public string? Availability { get; set; }
 
+    public virtual ICollection<MentorMenteeAssignment> MentorMenteeAssignments { get; set; } = new List<MentorMenteeAssignment>();
+
     public virtual ICollection<MentorshipSession> MentorshipSessions { get; set; } = new List<MentorshipSession>();
 
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();

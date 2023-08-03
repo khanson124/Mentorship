@@ -1,0 +1,44 @@
+﻿@model Mentor
+
+@{
+    ViewData["Title"] = "Add a new Mentor";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+
+        <h1>Add a new Mentor</h1>
+
+        <form asp-controller="Mentor" asp-action="CreateMentor" method="post">
+            <div class="form-group">
+                <label asp-for="Bio">Bio</label>
+                <input type="text" class="form-control" id="bio" name="bio" required>
+                <span asp-validation-for="Bio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AreaOfExpertise">Area of Expertise</label>
+                <input type="text" class="form-control" id="area_of_expertise" name="area_of_expertise" required>
+                <span asp-validation-for="AreaOfExpertise" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HourlyRate">Hourly Rate</label>
+                <input type="number" step="0.01" class="form-control" id="hourly_rate" name="hourly_rate" required>
+                <span asp-validation-for="HourlyRate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Availability">Availability</label>
+                <input type="text" class="form-control" id="availability" name="availability" required>
+                <span asp-validation-for="Availability" class="text-danger"></span>
+            </div>
+
+            <!-- The hidden input field for user_id should be set on the server-side when processing the form -->
+            <input type="hidden" id="user_id" name="user_id">
+
+            <button type="submit" class="btn btn-primary">Create Mentor</button>
+        </form>
+
+    </div>
+</div>

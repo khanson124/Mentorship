@@ -1,45 +1,66 @@
-﻿@model List<User>
+﻿@using Mentorship.Data.Enum
+@model List<User>
 
 @{
     ViewData["Title"] = "Users";
 }
 
+<style>
+    .profile-picture {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+</style>
+
 <div class="container">
-    <h1>Users</h1>
+    <h1>@ViewData["Title"]</h1>
 
     <div class="row">
         @foreach (var user in Model)
         {
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="@user.ProfilePicture" class="card-img-top" alt="Profile Picture">
-                    <div class="card-body">
-                        <h5 class="card-title">@user.first_name @user.last_name</h5>
-                        <p class="card-text">Username: @user.Username</p>
-                        <p class="card-text">Email: @user.Email</p>
-                        <p class="card-text">Registration Date: @user.RegistrationDate?.ToShortDateString()</p>
+            if (user.Status == UserStatus.Active)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top profile-picture" src="@user.ProfilePicture" alt="Profile Picture">
+                        <div class="card-body">
+                            <h5 class="card-title">@user.first_name @user.last_name</h5>
+                            <p class="card-text">Username: @user.Username</p>
+                            <p class="card-text">Email: @user.Email</p>
+                            <p class="card-text">Registration Date: @user.RegistrationDate?.ToShortDateString()</p>
+                            <a href="@Url.Action("Update", "User", new { id = user.UserId })" class="btn btn-primary">Edit</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-@user.UserId">Delete</button>
+                        </div>
+                    </div>
 
-                        <!-- Edit Button -->
-                        <a href="@Url.Action("Edit", "User", new { id = user.UserId })" class="btn btn-primary">Edit</a>
-
-                        <!-- Delete Button -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-@user.UserId">
-                            Delete
-                        </button>
-
-                        <!-- Delete Confirmation Modal -->
-                        <div class="modal fade" id="deleteModal-@user.UserId" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                            <!-- Modal content goes here -->
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal-@user.UserId" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete @user.first_name @user.last_name?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form asp-action="Delete" asp-route-id="@user.UserId" method="post">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
+    <div class="fixed-bottom m-4 text-end">
+        <a asp-controller="User" asp-action="CreateUser" class="btn btn-success text-white">
+            <i class="bi bi-plus-circle"></i> Add New
+        </a>
+    </div>
 </div>
-<div style="position: fixed; right: 25px; bottom: 60px; z-index: 1000" class="text-white">
-    <a asp-controller="User" asp-action="CreateUser" class="btn btn-success">
-        <i class="bi bi-plus-circle"></i> Add New
-    </a>
-</div>
-

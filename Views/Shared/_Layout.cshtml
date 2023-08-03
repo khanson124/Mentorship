@@ -36,10 +36,25 @@
                     </li>
                 </ul>
             </div>
+            <div class="navbar-nav ml-auto">
+                <a class="nav-link" href="#" id="messageIcon" role="button">
+                    <i class="bi bi-chat-dots"></i>
+                </a>
+                <a class="nav-link" href="#" id="notificationIcon" role="button">
+                    <i class="bi bi-bell"></i>
+                </a>
+            </div>
+
             <form class="form-inline my-2 my-lg-0" asp-controller="Search" asp-action="Index" method="get">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <div class="navbar-nav ml-auto">
+                <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
+                    <button class="btn btn-outline-danger" type="submit"><i class="bi bi-box-arrow-right"></i> Sign Out</button>
+                </form>
+            </div>
+
         </nav>
     </header>
     <div class="container">

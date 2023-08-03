@@ -12,12 +12,12 @@
         {
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="" class="card-img-top" alt="Profile Picture">
+                    <img class="card-img-top profile-picture" src="@mentor.User.ProfilePicture" alt="Profile Picture">
                     <div class="card-body">
                         <h5 class="card-title">@mentor.User.first_name @mentor.User.last_name</h5>
                         <p class="card-text">@mentor.Bio</p>
                         <p class="card-text"><strong>Area of Expertise:</strong> @mentor.AreaOfExpertise</p>
-                        <p class="card-text"><strong>Hourly Rate:</strong> $@mentor.HourlyRate</p>
+                        <p class="card-text"><strong>Hourly Rate:</strong> @mentor.HourlyRate.ToString()</p>
                         <p class="card-text"><strong>Availability:</strong> @mentor.Availability</p>
 
                         <!-- Edit Button -->
@@ -39,7 +39,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        @* Are you sure you want to delete @mentor.FirstName @mentor.LastName?*@
+                                        Are you sure you want to delete @mentor.User.first_name @mentor.User.last_name?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -53,4 +53,9 @@
             </div>
         }
     </div>
+</div>
+<div style="position: fixed; right: 25px; bottom: 60px; z-index: 1000" class="text-white">
+    <a asp-controller="Mentor" asp-action="CreateMentor" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add New
+    </a>
 </div>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mentorship.Migrations
 {
-    [DbContext(typeof(MentorShipDbContext))]
-    partial class MentorShipDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MentorshipDbContext))]
+    partial class MentorshipDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -25,8 +25,11 @@ namespace Mentorship.Migrations
             modelBuilder.Entity("Mentorship.Models.Mentee", b =>
                 {
                     b.Property<int>("MenteeId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("mentee_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenteeId"));
 
                     b.Property<string>("Bio")
                         .HasMaxLength(255)
@@ -57,7 +60,7 @@ namespace Mentorship.Migrations
                         .HasColumnName("user_id");
 
                     b.HasKey("MenteeId")
-                        .HasName("PK__Mentees__C079F297B66B7ADD");
+                        .HasName("PK__Mentees__C079F297FE4B1A9F");
 
                     b.HasIndex("UserId");
 
@@ -67,8 +70,11 @@ namespace Mentorship.Migrations
             modelBuilder.Entity("Mentorship.Models.Mentor", b =>
                 {
                     b.Property<int>("MentorId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("mentor_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MentorId"));
 
                     b.Property<string>("AreaOfExpertise")
                         .HasMaxLength(255)
@@ -97,18 +103,52 @@ namespace Mentorship.Migrations
                         .HasColumnName("user_id");
 
                     b.HasKey("MentorId")
-                        .HasName("PK__Mentors__E5D27EF3521379FF");
+                        .HasName("PK__Mentors__E5D27EF34F0AB75A");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Mentors");
                 });
 
+            modelBuilder.Entity("Mentorship.Models.MentorMenteeAssignment", b =>
+                {
+                    b.Property<int>("AssignmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("assignment_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentId"));
+
+                    b.Property<DateTime?>("AssignedDate")
+                        .HasColumnType("date")
+                        .HasColumnName("assigned_date");
+
+                    b.Property<int?>("MenteeId")
+                        .HasColumnType("int")
+                        .HasColumnName("mentee_id");
+
+                    b.Property<int?>("MentorId")
+                        .HasColumnType("int")
+                        .HasColumnName("mentor_id");
+
+                    b.HasKey("AssignmentId")
+                        .HasName("PK__MentorMe__DA89181451D260B3");
+
+                    b.HasIndex("MenteeId");
+
+                    b.HasIndex("MentorId");
+
+                    b.ToTable("MentorMenteeAssignments");
+                });
+
             modelBuilder.Entity("Mentorship.Models.MentorshipSession", b =>
                 {
                     b.Property<int>("SessionId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("session_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SessionId"));
 
                     b.Property<DateTime?>("EndTime")
                         .HasColumnType("datetime")
@@ -137,7 +177,7 @@ namespace Mentorship.Migrations
                         .HasColumnName("start_time");
 
                     b.HasKey("SessionId")
-                        .HasName("PK__Mentorsh__69B13FDCEE44AE1E");
+                        .HasName("PK__Mentorsh__69B13FDCDE92B0FA");
 
                     b.HasIndex("MenteeId");
 
@@ -149,8 +189,11 @@ namespace Mentorship.Migrations
             modelBuilder.Entity("Mentorship.Models.Message", b =>
                 {
                     b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("message_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
 
                     b.Property<string>("MessageContent")
                         .HasMaxLength(255)
@@ -171,7 +214,7 @@ namespace Mentorship.Migrations
                         .HasColumnName("timestamp");
 
                     b.HasKey("MessageId")
-                        .HasName("PK__Messages__0BBF6EE642E1AD51");
+                        .HasName("PK__Messages__0BBF6EE6F5AF8166");
 
                     b.HasIndex("ReceiverId");
 
@@ -183,8 +226,11 @@ namespace Mentorship.Migrations
             modelBuilder.Entity("Mentorship.Models.Review", b =>
                 {
                     b.Property<int>("ReviewId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("review_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
 
                     b.Property<int?>("MenteeId")
                         .HasColumnType("int")
@@ -209,7 +255,7 @@ namespace Mentorship.Migrations
                         .HasColumnName("review_text");
 
                     b.HasKey("ReviewId")
-                        .HasName("PK__Reviews__60883D90458EA0C0");
+                        .HasName("PK__Reviews__60883D90801932CA");
 
                     b.HasIndex("MenteeId");
 
@@ -221,18 +267,31 @@ namespace Mentorship.Migrations
             modelBuilder.Entity("Mentorship.Models.User", b =>
                 {
                     b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("user_id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("email");
 
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("first_name");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("last_name");
+
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)")
@@ -248,25 +307,23 @@ namespace Mentorship.Migrations
                         .HasColumnType("date")
                         .HasColumnName("registration_date");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("Status")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("status")
+                        .HasDefaultValueSql("('active')");
+
+                    b.Property<string>("Username")
                         .HasMaxLength(255)
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("username");
 
-                    b.Property<string>("first_name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("last_name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.HasKey("UserId")
-                        .HasName("PK__Users__B9BE370FF27E283D");
+                        .HasName("PK__Users__B9BE370FA5FAF7C5");
 
                     b.ToTable("Users");
                 });
@@ -276,7 +333,7 @@ namespace Mentorship.Migrations
                     b.HasOne("Mentorship.Models.User", "User")
                         .WithMany("Mentees")
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK__Mentees__user_id__29572725");
+                        .HasConstraintName("FK__Mentees__user_id__3B75D760");
 
                     b.Navigation("User");
                 });
@@ -286,9 +343,26 @@ namespace Mentorship.Migrations
                     b.HasOne("Mentorship.Models.User", "User")
                         .WithMany("Mentors")
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK__Mentors__user_id__267ABA7A");
+                        .HasConstraintName("FK__Mentors__user_id__38996AB5");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Mentorship.Models.MentorMenteeAssignment", b =>
+                {
+                    b.HasOne("Mentorship.Models.Mentee", "Mentee")
+                        .WithMany("MentorMenteeAssignments")
+                        .HasForeignKey("MenteeId")
+                        .HasConstraintName("FK__MentorMen__mente__4AB81AF0");
+
+                    b.HasOne("Mentorship.Models.Mentor", "Mentor")
+                        .WithMany("MentorMenteeAssignments")
+                        .HasForeignKey("MentorId")
+                        .HasConstraintName("FK__MentorMen__mento__49C3F6B7");
+
+                    b.Navigation("Mentee");
+
+                    b.Navigation("Mentor");
                 });
 
             modelBuilder.Entity("Mentorship.Models.MentorshipSession", b =>
@@ -296,12 +370,12 @@ namespace Mentorship.Migrations
                     b.HasOne("Mentorship.Models.Mentee", "Mentee")
                         .WithMany("MentorshipSessions")
                         .HasForeignKey("MenteeId")
-                        .HasConstraintName("FK__Mentorshi__mente__2D27B809");
+                        .HasConstraintName("FK__Mentorshi__mente__3F466844");
 
                     b.HasOne("Mentorship.Models.Mentor", "Mentor")
                         .WithMany("MentorshipSessions")
                         .HasForeignKey("MentorId")
-                        .HasConstraintName("FK__Mentorshi__mento__2C3393D0");
+                        .HasConstraintName("FK__Mentorshi__mento__3E52440B");
 
                     b.Navigation("Mentee");
 
@@ -313,12 +387,12 @@ namespace Mentorship.Migrations
                     b.HasOne("Mentorship.Models.User", "Receiver")
                         .WithMany("MessageReceivers")
                         .HasForeignKey("ReceiverId")
-                        .HasConstraintName("FK__Messages__receiv__30F848ED");
+                        .HasConstraintName("FK__Messages__receiv__4316F928");
 
                     b.HasOne("Mentorship.Models.User", "Sender")
                         .WithMany("MessageSenders")
                         .HasForeignKey("SenderId")
-                        .HasConstraintName("FK__Messages__sender__300424B4");
+                        .HasConstraintName("FK__Messages__sender__4222D4EF");
 
                     b.Navigation("Receiver");
 
@@ -330,12 +404,12 @@ namespace Mentorship.Migrations
                     b.HasOne("Mentorship.Models.Mentee", "Mentee")
                         .WithMany("Reviews")
                         .HasForeignKey("MenteeId")
-                        .HasConstraintName("FK__Reviews__mentee___34C8D9D1");
+                        .HasConstraintName("FK__Reviews__mentee___46E78A0C");
 
                     b.HasOne("Mentorship.Models.Mentor", "Mentor")
                         .WithMany("Reviews")
                         .HasForeignKey("MentorId")
-                        .HasConstraintName("FK__Reviews__mentor___33D4B598");
+                        .HasConstraintName("FK__Reviews__mentor___45F365D3");
 
                     b.Navigation("Mentee");
 
@@ -344,6 +418,8 @@ namespace Mentorship.Migrations
 
             modelBuilder.Entity("Mentorship.Models.Mentee", b =>
                 {
+                    b.Navigation("MentorMenteeAssignments");
+
                     b.Navigation("MentorshipSessions");
 
                     b.Navigation("Reviews");
@@ -351,6 +427,8 @@ namespace Mentorship.Migrations
 
             modelBuilder.Entity("Mentorship.Models.Mentor", b =>
                 {
+                    b.Navigation("MentorMenteeAssignments");
+
                     b.Navigation("MentorshipSessions");
 
                     b.Navigation("Reviews");

@@ -5,9 +5,9 @@ namespace Mentorship.Data.Services
 {
     public class MentorsService : IMentorService
     {
-        private readonly MentorShipDbContext _db;
+        private readonly MentorshipDbContext _db;
 
-        public MentorsService(MentorShipDbContext db)
+        public MentorsService(MentorshipDbContext db)
         {
             _db = db;
         }
@@ -28,7 +28,7 @@ namespace Mentorship.Data.Services
             throw new NotImplementedException();
         }
 
-        public Mentor GetMentorById(int id)
+        public async Task<Mentor> GetMentorById(int id)
         {
             throw new NotImplementedException();
         }

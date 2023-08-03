@@ -1,0 +1,36 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+
+        <h1>Details for @Model.Username</h1>
+
+        <div class="form-group">
+            <label asp-for="ProfilePicture">Profile Picture</label>
+            <img id="ProfilePicturePreview" src="@Model.ProfilePicture" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Username">Username</label>
+            <input type="text" class="form-control" id="Username" name="Username" value="@Model.Username" readonly>
+        </div>
+        <div class="form-group">
+            <label asp-for="first_name">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" value="@Model.first_name" readonly>
+        </div>
+        <div class="form-group">
+            <label asp-for="last_name">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" value="@Model.last_name" readonly>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" readonly>
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Create User</button>
+
+</div>

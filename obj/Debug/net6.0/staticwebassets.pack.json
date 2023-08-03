@@ -245,20 +245,28 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\017bd141-877f-430f-8541-8420583aa130.JPG",
-      "PackagePath": "staticwebassets\\uploads\\017bd141-877f-430f-8541-8420583aa130.JPG"
+      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\079f00a2-2448-451c-a2e7-7e3ee4cd8a90.jpg",
+      "PackagePath": "staticwebassets\\uploads\\079f00a2-2448-451c-a2e7-7e3ee4cd8a90.jpg"
     },
     {
-      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\591bcacb-dbb6-4077-a4f1-db884fc7160b.JPG",
-      "PackagePath": "staticwebassets\\uploads\\591bcacb-dbb6-4077-a4f1-db884fc7160b.JPG"
+      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\31038ce2-a0e8-461f-86fa-2313e7b46771.JPG",
+      "PackagePath": "staticwebassets\\uploads\\31038ce2-a0e8-461f-86fa-2313e7b46771.JPG"
     },
     {
-      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\656fbe83-ffb7-4fba-af48-ff9b0be36d2d.JPG",
-      "PackagePath": "staticwebassets\\uploads\\656fbe83-ffb7-4fba-af48-ff9b0be36d2d.JPG"
+      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\5dcc34c7-1dd7-41b9-a1fe-22ea9ecb23c4.JPG",
+      "PackagePath": "staticwebassets\\uploads\\5dcc34c7-1dd7-41b9-a1fe-22ea9ecb23c4.JPG"
     },
     {
-      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\9b1a158a-6d95-4b8d-b767-538efda3932b.JPG",
-      "PackagePath": "staticwebassets\\uploads\\9b1a158a-6d95-4b8d-b767-538efda3932b.JPG"
+      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\bc635a9f-aea2-4360-bb6f-c21b4001f254.jpg",
+      "PackagePath": "staticwebassets\\uploads\\bc635a9f-aea2-4360-bb6f-c21b4001f254.jpg"
+    },
+    {
+      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\c31d1b2a-9739-49f9-acdc-3524f76a9ccf.jpg",
+      "PackagePath": "staticwebassets\\uploads\\c31d1b2a-9739-49f9-acdc-3524f76a9ccf.jpg"
+    },
+    {
+      "Id": "D:\\Users\\khans\\source\\repos\\Mentorship\\wwwroot\\uploads\\e5c6d2a2-8238-4b3f-a812-acc208c62354.JPG",
+      "PackagePath": "staticwebassets\\uploads\\e5c6d2a2-8238-4b3f-a812-acc208c62354.JPG"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Mentorship.Microsoft.AspNetCore.StaticWebAssets.props",

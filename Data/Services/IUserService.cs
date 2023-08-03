@@ -1,14 +1,17 @@
 ﻿using Mentorship.Models;
+using System.Threading.Tasks;
 
 namespace Mentorship.Data.Services
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetAllUsers();
-        Mentor GetUserById(int id);
-        void Add(User user);
+        Task<IEnumerable<User>> GetAllUsersAsync();
+        Task<User> GetUserByIdAsync(int id);
+       // Task <User> GetUserById(int id);
+        public User GetUserById(int id);
+        Task AddAsync(User user);
 
-        Mentor Update(int id, User newUser);
+        Task<User> UpdateAsync(int id, User newUser);
 
 
 
